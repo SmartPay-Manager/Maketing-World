@@ -3,9 +3,9 @@
 // ========================================
 
 export interface MarketData {
-  price: string;
-  volume24h: string;
-  marketCap: string;
+  price: Number;
+  volume24h: Number;
+  marketCap: Number;
   lastUpdated: number;
   address: string;
   symbol: string;
@@ -13,11 +13,7 @@ export interface MarketData {
   high24h?: number;
   low24h?: number;
   change24h?: number;
-  liquidity: {
-    usd: string;
-    base: string;
-    quote: string;
-  };
+  liquidity: Number;
 }
 
 export interface SimpleChartData {

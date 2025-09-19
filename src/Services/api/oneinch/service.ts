@@ -74,6 +74,7 @@ class OneInchService {
         priceChange24h: volumeData.priceChange,
         liquidity: Number(liquidityData.data.totalLiquidity || 0)
       };
+        
     } catch (error) {
       console.error('Error fetching market data:', error);
       throw error;
