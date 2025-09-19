@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  }
+}
+
+@layer base {
+  body {
+    background-color: rgb(8, 3, 12);  /* Darkest purple */
+    color: #f1f5f9;
+  }
+}
+
+/* Override any remaining Tailwind slate backgrounds */
+[class*='bg-slate-'] {
+  background-color: rgb(25, 9, 35) !important;
+}
+
+[class*='bg-slate-900'] {
+  background-color: rgb(8, 3, 12) !important;
+}
+
+[class*='bg-slate-800'] {
+  background-color: rgb(16, 6, 23) !important;
+}
+
+[class*='bg-slate-700'] {
+  background-color: rgb(25, 9, 35) !important;
+}
+
+@layer components {
+  .terminal-container {
+    background-color: rgba(59, 22, 84, 0.5);  /* Dark purple with transparency */
+    border: 1px solid rgba(148, 63, 200, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .terminal-header {
+    @apply flex items-center justify-between mb-4;
+  }
+
+  .terminal-btn {
+    @apply px-4 py-2 bg-green-400/20 hover:bg-green-400/30 
+           border border-green-400/30 rounded-lg 
+           text-green-400 transition-colors duration-200;
+  }
+
+  .terminal-input {
+    @apply w-full bg-slate-900/50 border border-slate-700/50 
+           rounded-lg px-4 py-2 text-green-400 font-mono
+           focus:outline-none focus:ring-2 focus:ring-green-400/50;
+  }
+
+  .status-indicator {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-indicator.active {
+    @apply bg-green-400 animate-pulse;
+  }
+
+  .status-indicator.warning {
+    @apply bg-amber-400;
+  }
+
+  .status-indicator.error {
+    @apply bg-red-400;
+  }
+}
+
+:root {
+  --color-terminal-green: #10B981;
+  --color-terminal-blue: #3B82F6;
+  --color-terminal-amber: #F59E0B;
+  --color-terminal-red: #EF4444;
+  --color-purple-900: rgb(8, 3, 12);
+  --color-purple-800: rgb(16, 6, 23);
+  --color-purple-700: rgb(25, 9, 35);
+  
+  --font-family-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+body {
+  background-color: var(--color-purple-900);
+  color: var(--color-terminal-green);
+  font-family: var(--font-family-mono);
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Composants personnalisés pour notre terminal */
+.terminal-panel {
+  background-color: rgba(59, 22, 84, 0.5);
+  border: 1px solid rgba(148, 63, 200, 0.3);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+.terminal-button {
+  padding: 0.5rem 1rem;
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 0.5rem;
+  color: var(--color-terminal-green);
+  transition: all 200ms ease-in-out;
+}
+
+.terminal-button:hover {
+  @apply bg-green-400/30;
+}
+
+/* Styles spécialisés pour les données de trading */
+.price-positive {
+  @apply text-green-400;
+}
+
+.price-negative {
+  @apply text-red-400;
+}
+
+.data-cell {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Utilitaires personnalisés pour les animations de marché */
+.animate-pulse-data {
+  animation: var(--animate-pulse-slow);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px #10B98133;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px #3B82F633;
+}
+
+/* Animation custom pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}

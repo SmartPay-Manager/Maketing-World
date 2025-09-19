@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import { ThumbsUp, MessageSquare, Share2, Award } from 'lucide-react';
+
+interface Post {
+  id: string;
+  author: string;
+  content: string;
+  timestamp: string;
+  likes: number;
+  comments: number;
+  xpReward: number;
+  userLiked: boolean;
+}
+
+const CommunityPosts: React.FC = () => {
+  // Mock data - In production, this would come from your backend
+  const [posts, setPosts] = useState<Post[]>([
+    {
+      id: '1',
+      author: '0x742d...8c8c',
+      content: 'Just completed a successful arbitrage trade between Uniswap and SushiSwap! Made 2.5 ETH profit 🚀',
+      timestamp: '2 hours ago',
+      likes: 128,
+      comments: 24,
+      xpReward: 500,
+      userLiked: false
+    },
+    {
+      id: '2',
+      author: '0x123d...45ab',
+      content: 'New strategy alert: Using flash loans for cross-chain arbitrage opportunities. Check out my latest trades!',
+      timestamp: '4 hours ago',
+      likes: 95,
+      comments: 18,
+      xpReward: 300,
+      userLiked: false
+    },
+    {
+      id: '3',
+      author: '0x456e...89cd',
+      content: 'Market analysis: ETH/BTC correlation patterns suggest potential arbitrage opportunities in the next 24h',
+      timestamp: '6 hours ago',
+      likes: 76,
+      comments: 12,
+      xpReward: 200,
+      userLiked: false
+    }
+  ]);
+
+  const handleLike = (postId: string) => {
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          likes: post.userLiked ? post.likes - 1 : post.likes + 1,
+          userLiked: !post.userLiked
+        };
+      }
+      return post;
+    }));
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Create Post Section */}
+      <div className="bg-slate-800 rounded-lg p-6">
+        <textarea
+          placeholder="Share your trading insights..."
+          className="w-full bg-slate-700/50 rounded-lg p-4 text-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+          rows={3}
+        />
+        <div className="flex justify-between items-center mt-4">
+          <div className="text-sm text-slate-400">
+            Earn up to 500 XP for quality posts
+          </div>
+          <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors">
+            Post
+          </button>
+        </div>
+      </div>
+
+      {/* Posts Feed */}
+      <div className="space-y-4">
+        {posts.map((post) => (
+          <div key={post.id} className="bg-slate-800 rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+                  <span className="text-slate-300">{post.author.slice(0, 2)}</span>
+                </div>
+                <div>
+                  <div className="text-slate-200 font-medium">{post.author}</div>
+                  <div className="text-sm text-slate-400">{post.timestamp}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-green-400">
+                <Award className="h-4 w-4" />
+                <span className="text-sm">+{post.xpReward} XP</span>
+              </div>
+            </div>
+            
+            <p className="text-slate-300 mb-4">{post.content}</p>
+            
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => handleLike(post.id)}
+                className={`flex items-center gap-2 ${
+                  post.userLiked ? 'text-green-400' : 'text-slate-400'
+                } hover:text-green-400 transition-colors`}
+              >
+                <ThumbsUp className="h-5 w-5" />
+                <span>{post.likes}</span>
+              </button>
+              <button className="flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors">
+                <MessageSquare className="h-5 w-5" />
+                <span>{post.comments}</span>
+              </button>
+              <button className="flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors">
+                <Share2 className="h-5 w-5" />
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default CommunityPosts;
