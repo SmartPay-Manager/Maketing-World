@@ -2,11 +2,17 @@ import { useEffect, useRef, useCallback } from 'react';
 import { useMarketStore } from '../store/marketStore';
 import { getOneInchService } from '../services/api/oneinch/index';
 import { OneInchWebSocket } from '../services/api/oneinch/websocket';
-import type { MarketData, WebSocketResponse } from '../types/api';
+import type { MarketData } from '../types/api';
 
 interface Use1InchMarketDataProps {
   tokens: string[];
   updateInterval?: number;
+}
+
+interface WebSocketResponse {
+  type: string;
+  channel?: string;
+  data: Record<string, unknown>;
 }
 
 export const use1InchMarketData = ({ tokens, updateInterval = 30000 }: Use1InchMarketDataProps) => {

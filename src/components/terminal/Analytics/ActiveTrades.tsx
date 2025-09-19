@@ -73,60 +73,60 @@ const ActiveTrades: React.FC<ActiveTradesProps> = ({
 
   // Add mock trades for demo purposes
   const mockTrades: ActiveTrade[] = [
-    {
-      id: 'demo_trade_1',
-      type: 'fusion_plus',
-      fromToken: 'ETH',
-      toToken: 'XRP',
-      fromAmount: '1.5',
-      expectedAmount: '3000',
-      actualAmount: '2998.5',
-      status: 'completed',
-      createdAt: Date.now() - 300000, // 5 minutes ago
-      completedAt: Date.now() - 120000, // 2 minutes ago
-      crossChainDetails: {
-        sourceChain: 'ethereum',
-        destinationChain: 'xrp',
-        atomicSwapId: 'atomic_swap_demo_1'
-      },
-      txHash: '0x1234567890abcdef...',
-      explorerUrl: 'https://etherscan.io/tx/0x1234567890abcdef',
-      estimatedGas: '52000',
-      gasPrice: '20000000000',
-      networkFee: '0.00104'
+  {
+    id: 'demo_trade_1',
+    type: 'fusion_plus',
+    fromToken: 'ETH',
+    toToken: 'XRP',
+    fromAmount: '1.5',
+    expectedAmount: '3000',
+    actualAmount: '2998.5',
+    status: 'completed',
+    createdAt: Date.now() - 300000, // 5 minutes ago
+    completedAt: Date.now() - 120000, // 2 minutes ago
+    crossChainDetails: {
+      sourceChain: 'ethereum',
+      destinationChain: 'xrp',
+      atomicSwapId: 'atomic_swap_demo_1'
     },
-    {
-      id: 'demo_trade_2',
-      type: 'fusion_plus',
-      fromToken: 'XRP',
-      toToken: 'ETH',
-      fromAmount: '5000',
-      expectedAmount: '2.48',
-      status: 'processing',
-      createdAt: Date.now() - 180000, // 3 minutes ago
-      crossChainDetails: {
-        sourceChain: 'xrp',
-        destinationChain: 'ethereum',
-        atomicSwapId: 'atomic_swap_demo_2'
-      },
-      estimatedGas: '48000',
-      gasPrice: '22000000000',
-      networkFee: '0.001056'
+    txHash: '0x1234567890abcdef...',
+    explorerUrl: 'https://etherscan.io/tx/0x1234567890abcdef',
+    estimatedGas: '52000',
+    gasPrice: '20000000000',
+    networkFee: '0.00104'
+  },
+  {
+    id: 'demo_trade_2',
+    type: 'fusion_plus',
+    fromToken: 'XRP',
+    toToken: 'ETH',
+    fromAmount: '5000',
+    expectedAmount: '2.48',
+    status: 'processing',
+    createdAt: Date.now() - 180000, // 3 minutes ago
+    crossChainDetails: {
+      sourceChain: 'xrp',
+      destinationChain: 'ethereum',
+      atomicSwapId: 'atomic_swap_demo_2',
     },
-    {
-      id: 'demo_trade_3',
-      type: 'classic',
-      fromToken: 'USDC',
-      toToken: 'WETH',
-      fromAmount: '5000',
-      expectedAmount: '2.499',
-      status: 'pending',
-      createdAt: Date.now() - 30000, // 30 seconds ago
-      estimatedGas: '45000',
-      gasPrice: '19000000000',
-      networkFee: '0.000855'
-    }
-  ];
+    estimatedGas: '48000',
+    gasPrice: '22000000000',
+    networkFee: '0.001056',
+  },
+  {
+    id: 'demo_trade_3',
+    type: 'classic',
+    fromToken: 'USDC',
+    toToken: 'WETH',
+    fromAmount: '5000',
+    expectedAmount: '2.499',
+    status: 'pending',
+    createdAt: Date.now() - 30000, // 30 seconds ago
+    estimatedGas: '45000',
+    gasPrice: '19000000000',
+    networkFee: '0.000855',
+  },
+];
 
   const combinedTrades = [...allTrades, ...mockTrades];
 

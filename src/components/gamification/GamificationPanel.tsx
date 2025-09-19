@@ -16,7 +16,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-import type { UserProfile, NFTReward } from '../../../types/api';
+import type { UserProfile, NFTReward } from '../../types/api';
 import { useGamification } from '../../hooks/useGamification';
 
 interface GamificationPanelProps {

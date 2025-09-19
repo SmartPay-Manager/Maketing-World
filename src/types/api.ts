@@ -196,10 +196,10 @@ export interface ActiveTrade {
   crossChainDetails?: {
     sourceChain: string;
     destinationChain: string;
-    atomicSwapId?: string;
-    stage: 'initiated' | 'escrow_deployed' | 'finality_confirmed' | 'secret_submitted' | 'completed';
-    progress: number;
-    lastUpdate: number;
+    atomicSwapId: string;
+    stage?: 'initiated' | 'escrow_deployed' | 'finality_confirmed' | 'secret_submitted' | 'completed';
+    progress?: number;
+    lastUpdate?: number;
     orderHash?: string;
     srcEscrowAddress?: string;
     dstEscrowAddress?: string;
@@ -310,13 +310,4 @@ export interface SwapQuote {
   estimatedGas: string;
   route: string[];
   data?: string;
-}
-
-export interface ActiveTrade {
-  id: string;
-  fromToken: string;
-  toToken: string;
-  amount: string;
-  status: 'pending' | 'processing' | 'completed' | 'failed';
-  timestamp: number;
 }
