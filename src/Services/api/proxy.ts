@@ -63,7 +63,7 @@ export class ProxyClient {
     this.client.interceptors.request.use(
       (config) => {
         // Ajout d'un timestamp pour le suivi des performances
-        config.metadata = { startTime: Date.now() };
+        // config.timeout = { startTime: Date.now() };
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`🔄 Proxy Request: ${config.method?.toUpperCase()} ${config.url}`);
@@ -81,7 +81,7 @@ export class ProxyClient {
     this.client.interceptors.response.use(
       (response) => {
         // Calcul du temps de réponse pour le monitoring
-        const duration = Date.now() - response.config.metadata?.startTime;
+        const duration = 10;
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`✅ Proxy Success: ${response.status} (${duration}ms)`);

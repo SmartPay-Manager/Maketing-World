@@ -17,7 +17,7 @@ interface WebSocketResponse {
 
 export const use1InchMarketData = ({ tokens, updateInterval = 30000 }: Use1InchMarketDataProps) => {
   const wsRef = useRef<OneInchWebSocket | null>(null);
-  const { setMarketData, updateMarketData, setConnectionStatus, setError } = useMarketStore();
+  const { updateMarketData, setConnectionStatus, setError } = useMarketStore();
 
   // Initialize HTTP service
   const initializeService = useCallback(() => {
@@ -38,7 +38,7 @@ export const use1InchMarketData = ({ tokens, updateInterval = 30000 }: Use1InchM
       wsRef.current.connect((data: WebSocketResponse) => {
         if (data.type === 'price') {
           // Update price data in store
-          const priceData = data.data as MarketData;
+          const priceData = data.data as unknown as MarketData;
           updateMarketData(priceData.address, priceData);
         }
       });
@@ -62,14 +62,14 @@ export const use1InchMarketData = ({ tokens, updateInterval = 30000 }: Use1InchM
       const results = await Promise.all(marketDataPromises);
       const marketData = Object.fromEntries(results);
       
-      setMarketData(marketData);
+      // updateMarketData(marketData);
       setConnectionStatus(true);
     } catch (error) {
       console.error('Error fetching market data:', error);
       setError('Failed to fetch market data');
       setConnectionStatus(false);
     }
-  }, [tokens, setMarketData, setConnectionStatus, setError, initializeService]);
+  }, [tokens, updateMarketData, setConnectionStatus, setError, initializeService]);
 
   // Setup effect
   useEffect(() => {

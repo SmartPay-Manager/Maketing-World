@@ -5,7 +5,6 @@ import { BarChart3, Flame } from 'lucide-react';
 import PortfolioSummary from './Portfolio';
 import GamificationPanel from '../gamification/GamificationPanel';
 import NewsGrid from './NewsGrid';
-import MarketDataView from './MarketData';
 import ActiveTrades from './Analytics/ActiveTrades';
 import ArbitrageScanner from './Analytics/ArbitrageScanner';
 import SwapInterface from './SwapInterface';
@@ -18,7 +17,7 @@ interface TabContentProps {
   walletAddress?: string;
   portfolioLoading: boolean;
   marketData: Record<string, MarketData>;
-  profile?: UserProfile;
+  profile: UserProfile;
 }
 
 const panelVariants: Variants = {
@@ -308,7 +307,7 @@ const TabContent: React.FC<TabContentProps> = ({
           <div className="col-span-6">
             <SwapInterface 
               walletAddress={walletAddress}
-              mode="cross-chain"
+              className="cross-chain"
             />
           </div>
         </div>
